@@ -1,0 +1,629 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,BUID,WarehouseName,ItemID,StockByCarton,TotalSalesByCarton,DaysOfStock,BrandNameE,MasterBrandName,ItemNameE
+0,1020105,مخزن الشرقية,90100003,31.0,144.2499999995,0.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+1,1020105,مخزن الشرقية,90200054,21.0,16.1944444413,1.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+2,1020105,مخزن الشرقية,90200056,23.0,9.6944444422,2.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+3,1020105,مخزن الشرقية,90200058,22.0,16.8611111076,1.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+4,1020105,مخزن الشرقية,90200059,17.0,7.6944444431,2.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+5,1020105,مخزن الشرقية,90200061,15.0,19.2222222201,1.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+6,1020105,مخزن الشرقية,90200062,16.0,18.1249999977,1.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+7,1020105,مخزن الشرقية,90200063,14.0,31.9166666631,0.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+8,1020105,مخزن الشرقية,90200065,10.0,17.1249999984,1.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+9,1020105,مخزن الشرقية,90200077,10.0,4.7152777771,2.0,Chocolate,Chocolate,Rocket 30 gm (6*24)
+10,1020105,مخزن الشرقية,90200135,12.0,14.3194444421,1.0,Chocolate,Chocolate,choco dark large stevia 55%
+11,1020105,مخزن الشرقية,90200136,20.0,21.5833333307,1.0,Chocolate,Chocolate,choco dark large hazelnut
+12,1020105,مخزن الشرقية,90200137,20.0,17.8611111089,1.0,Chocolate,Chocolate,choco dark large Almond
+13,1020105,مخزن الشرقية,90200138,57.0,137.083333333,0.0,Chocolate,Chocolate,new dark couverture150 g
+14,1020105,مخزن الشرقية,90300022,198.0,18.1527777746,11.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+15,1020105,مخزن الشرقية,90300023,78.0,0.4236111109,184.0,Bimbo,Biscuit,Bimbo XL 49g (12*12)
+16,1020105,مخزن الشرقية,90300033,142.0,21.4722222191,7.0,Bimbo,Biscuit,Bimbo L Choco Max
+17,1020105,مخزن الشرقية,90300034,98.0,17.1874999969,6.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+18,1020105,مخزن الشرقية,90300046,41.83,2.8958333332,14.0,Bimbo,Biscuit,Bimbo XL Choco Max
+19,1020105,مخزن الشرقية,90500032,28.0,1.989583333,14.0,Wafer,Biscuit,Wafer Munchi Strawbe32 gm
+20,1020105,مخزن الشرقية,90500033,29.0,1.2395833331,23.0,Wafer,Biscuit,Wafer Munchi Caramel32 gm
+21,1020105,مخزن الشرقية,90500034,46.0,0.8229166666,56.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+22,1020105,مخزن الشرقية,90500035,58.0,0.7395833333,78.0,Wafer,Biscuit,Wafer Munchi Hazelnut32gm
+23,1020105,مخزن الشرقية,90500036,34.0,1.3229166665,26.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+24,1020105,مخزن الشرقية,90500037,33.0,1.4062499997,23.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+25,1020105,مخزن الشرقية,FGBSBOT01,66.0,15.2013888861,4.0,Bimbo,Biscuit,Bimbo Oat Classic
+26,1020105,مخزن الشرقية,FGBSBOT02,60.0,18.3402777744,3.0,Bimbo,Biscuit,Bimbo Oat Raisins
+27,1020105,مخزن الشرقية,FGBSMBCM6,4.0,32.0,0.0,Bimbo,Biscuit,Mini Bimbo Choco Max 4.5 KG New
+28,1020105,مخزن الشرقية,FGBSMBO06,23.0,50.0,0.0,Bimbo,Biscuit,Mini Bimbo Original 4.5 KG New
+29,1020105,مخزن الشرقية,FGCHDK014,4.0,24.7916666638,0.0,Chocolate,Chocolate,Chocolate Dark 72%
+30,1020105,مخزن الشرقية,FGCHMK008,22.0,14.9583333311,1.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+31,1020105,مخزن الشرقية,FGCHMK009,22.0,20.6249999975,1.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+32,1020105,مخزن الشرقية,FGCOME003,108.0,467.4166666664,0.0,Cocoa,Cocoa,Cocoa Mix Med - Extra 10%
+33,1020105,مخزن الشرقية,FGJLP0001,3.0,1.8263888883,2.0,Valda,Valda,Jelly Strawberry - Funfruit
+34,1020105,مخزن الشرقية,FGJLP0005,16.0,13.3402777773,1.0,Valda,Valda,Jelly Mango - Funfruit
+35,1020105,مخزن الشرقية,FGJLP0006,4.0,3.9791666662,1.0,Valda,Valda,Jelly Pineapple - Funfruit
+36,1020105,مخزن الشرقية,FGWMST009,162.0,0.0833333333,1944.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+37,1020106,مخزن الغربية,90100001,738.0,976.395833333,1.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+38,1020106,مخزن الغربية,90100003,133.0,219.4166666662,1.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+39,1020106,مخزن الغربية,90100025,83.0,25.0,3.0,Cocoa,Cocoa,Cocoa Large 48DB
+40,1020106,مخزن الغربية,90200054,22.0,37.8680555494,1.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+41,1020106,مخزن الغربية,90200056,23.0,22.3333333313,1.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+42,1020106,مخزن الغربية,90200058,38.0,32.4861111056,1.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+43,1020106,مخزن الغربية,90200059,20.0,13.8472222202,1.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+44,1020106,مخزن الغربية,90200061,50.0,73.4166666604,1.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+45,1020106,مخزن الغربية,90200062,56.0,128.2916666638,0.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+46,1020106,مخزن الغربية,90200063,20.0,44.6249999958,0.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+47,1020106,مخزن الغربية,90200064,15.0,26.3194444417,1.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+48,1020106,مخزن الغربية,90200065,18.0,27.7222222196,1.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+49,1020106,مخزن الغربية,90200077,5.0,21.999999997,0.0,Chocolate,Chocolate,Rocket 30 gm (6*24)
+50,1020106,مخزن الغربية,90200135,38.0,36.2222222184,1.0,Chocolate,Chocolate,choco dark large stevia 55%
+51,1020106,مخزن الغربية,90200136,22.0,29.2638888859,1.0,Chocolate,Chocolate,choco dark large hazelnut
+52,1020106,مخزن الغربية,90200137,23.0,17.7638888874,1.0,Chocolate,Chocolate,choco dark large Almond
+53,1020106,مخزن الغربية,90200138,68.0,272.4999999992,0.0,Chocolate,Chocolate,new dark couverture150 g
+54,1020106,مخزن الغربية,90300022,103.0,59.0069444378,2.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+55,1020106,مخزن الغربية,90300023,21.0,2.3749999997,9.0,Bimbo,Biscuit,Bimbo XL 49g (12*12)
+56,1020106,مخزن الغربية,90300033,96.0,65.0069444379,1.0,Bimbo,Biscuit,Bimbo L Choco Max
+57,1020106,مخزن الغربية,90300034,67.0,35.2847222179,2.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+58,1020106,مخزن الغربية,90300046,41.0,2.8333333331,14.0,Bimbo,Biscuit,Bimbo XL Choco Max
+59,1020106,مخزن الغربية,90500032,29.0,3.3333333328,9.0,Wafer,Biscuit,Wafer Munchi Strawbe32 gm
+60,1020106,مخزن الغربية,90500033,20.0,3.9166666659,5.0,Wafer,Biscuit,Wafer Munchi Caramel32 gm
+61,1020106,مخزن الغربية,90500034,14.0,2.9999999994,5.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+62,1020106,مخزن الغربية,90500035,43.0,3.885416666,11.0,Wafer,Biscuit,Wafer Munchi Hazelnut32gm
+63,1020106,مخزن الغربية,90500036,43.0,3.5833333327,12.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+64,1020106,مخزن الغربية,90500037,68.0,4.3020833326,16.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+65,1020106,مخزن الغربية,FGBSBOT01,77.0,33.3888888857,2.0,Bimbo,Biscuit,Bimbo Oat Classic
+66,1020106,مخزن الغربية,FGBSBOT02,70.0,27.2499999961,3.0,Bimbo,Biscuit,Bimbo Oat Raisins
+67,1020106,مخزن الغربية,FGBSMBCM4,182.0,1.8993055552,96.0,Bimbo,Biscuit,Mini Bimbo Choco Max 24*12
+68,1020106,مخزن الغربية,FGBSMBCM6,50.0,194.0,0.0,Bimbo,Biscuit,Mini Bimbo Choco Max 4.5 KG New
+69,1020106,مخزن الغربية,FGBSMBO03,88.0,2.1111111108,42.0,Bimbo,Biscuit,Mini Bimbo Original 24*12
+70,1020106,مخزن الغربية,FGBSMBO06,1.0,68.0,0.0,Bimbo,Biscuit,Mini Bimbo Original 4.5 KG New
+71,1020106,مخزن الغربية,FGCHDK014,2.0,34.9305555531,0.0,Chocolate,Chocolate,Chocolate Dark 72%
+72,1020106,مخزن الغربية,FGCHMK008,55.0,67.3611111069,1.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+73,1020106,مخزن الغربية,FGCHMK009,25.0,22.1944444419,1.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+74,1020106,مخزن الغربية,FGJLP0001,3.0,331.5138888883,0.0,Valda,Valda,Jelly Strawberry - Funfruit
+75,1020106,مخزن الغربية,FGJLP0005,13.0,63.0902777777,0.0,Valda,Valda,Jelly Mango - Funfruit
+76,1020106,مخزن الغربية,FGJLP0006,8.0,63.6736111109,0.0,Valda,Valda,Jelly Pineapple - Funfruit
+77,1020106,مخزن الغربية,FGWMST009,235.0,144.8333333333,2.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+78,1020106,مخزن الغربية,FGWMVG008,158.0,0.9999999999,158.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+79,1020106,مخزن الغربية,FGWMVN007,262.0,4.4999999997,58.0,Wafer,Biscuit,Wafer Mini Munchi Vanilla
+80,1020106,مخزن الغربية,FGWTRHZ04,47.0,82.4374999981,1.0,Wafer,Biscuit,Wafer Trix Hazelnut
+81,1020106,مخزن الغربية,FGWTRVG01,7.0,3.6666666662,2.0,Wafer,Biscuit,Wafer Trix Vegan
+82,1020106,مخزن الغربية,FGWTRVN02,5.0,4.6805555547,1.0,Wafer,Biscuit,Wafer Trix Vanilla
+83,1020107,مخزن المنصورة ,90100001,329.0,17.0416666666,19.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+84,1020107,مخزن المنصورة ,90100003,47.0,135.8333333322,0.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+85,1020107,مخزن المنصورة ,90100025,28.0,162.1041666665,0.0,Cocoa,Cocoa,Cocoa Large 48DB
+86,1020107,مخزن المنصورة ,90200054,20.0,68.2083333292,0.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+87,1020107,مخزن المنصورة ,90200056,27.0,94.7222222177,0.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+88,1020107,مخزن المنصورة ,90200058,36.0,33.8055555492,1.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+89,1020107,مخزن المنصورة ,90200059,70.0,29.9999999942,2.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+90,1020107,مخزن المنصورة ,90200061,26.0,37.374999995,1.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+91,1020107,مخزن المنصورة ,90200062,39.0,56.8888888822,1.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+92,1020107,مخزن المنصورة ,90200063,17.0,20.1666666646,1.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+93,1020107,مخزن المنصورة ,90200064,15.0,37.1527777726,0.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+94,1020107,مخزن المنصورة ,90200065,20.0,122.3888888852,0.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+95,1020107,مخزن المنصورة ,90200135,39.0,38.8333333273,1.0,Chocolate,Chocolate,choco dark large stevia 55%
+96,1020107,مخزن المنصورة ,90200136,12.0,28.5416666617,0.0,Chocolate,Chocolate,choco dark large hazelnut
+97,1020107,مخزن المنصورة ,90200137,25.0,20.9166666633,1.0,Chocolate,Chocolate,choco dark large Almond
+98,1020107,مخزن المنصورة ,90200138,58.0,149.5833333321,0.0,Chocolate,Chocolate,new dark couverture150 g
+99,1020107,مخزن المنصورة ,90300022,110.0,312.340277769,0.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+100,1020107,مخزن المنصورة ,90300034,121.0,118.3819444363,1.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+101,1020107,مخزن المنصورة ,90300046,25.0,11.229166666,2.0,Bimbo,Biscuit,Bimbo XL Choco Max
+102,1020107,مخزن المنصورة ,90500032,18.0,3.7812499988,5.0,Wafer,Biscuit,Wafer Munchi Strawbe32 gm
+103,1020107,مخزن المنصورة ,FGBSBOT01,61.0,27.1527777721,2.0,Bimbo,Biscuit,Bimbo Oat Classic
+104,1020107,مخزن المنصورة ,FGBSBOT02,54.0,25.4374999951,2.0,Bimbo,Biscuit,Bimbo Oat Raisins
+105,1020107,مخزن المنصورة ,FGBSMBCM4,14.0,259.8993055548,0.0,Bimbo,Biscuit,Mini Bimbo Choco Max 24*12
+106,1020107,مخزن المنصورة ,FGBSMBCM6,282.0,95.0,3.0,Bimbo,Biscuit,Mini Bimbo Choco Max 4.5 KG New
+107,1020107,مخزن المنصورة ,FGBSMBO03,57.0,2.3298611106,24.0,Bimbo,Biscuit,Mini Bimbo Original 24*12
+108,1020107,مخزن المنصورة ,FGBSMBO06,135.0,70.0,2.0,Bimbo,Biscuit,Mini Bimbo Original 4.5 KG New
+109,1020107,مخزن المنصورة ,FGCHMK008,24.0,52.4583333269,0.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+110,1020107,مخزن المنصورة ,FGCHMK009,31.0,40.6527777728,1.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+111,1020107,مخزن المنصورة ,FGCOME003,193.0,689.6249999991,0.0,Cocoa,Cocoa,Cocoa Mix Med - Extra 10%
+112,1020107,مخزن المنصورة ,FGJLP0001,7.08,673.006944444,0.0,Valda,Valda,Jelly Strawberry - Funfruit
+113,1020107,مخزن المنصورة ,FGJLP0005,19.0,349.006944444,0.0,Valda,Valda,Jelly Mango - Funfruit
+114,1020107,مخزن المنصورة ,FGJLP0006,22.41,324.8402777774,0.0,Valda,Valda,Jelly Pineapple - Funfruit
+115,1020107,مخزن المنصورة ,FGWMST009,146.0,3.944444444,37.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+116,1020107,مخزن المنصورة ,FGWMVG008,73.0,31.6805555552,2.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+117,1020107,مخزن المنصورة ,FGWMVN007,52.0,27.5277777773,2.0,Wafer,Biscuit,Wafer Mini Munchi Vanilla
+118,1020107,مخزن المنصورة ,FGWTRHZ04,10.0,12.7499999973,1.0,Wafer,Biscuit,Wafer Trix Hazelnut
+119,1020108,مخزن المنوفية,90100001,74.04,44.0,2.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+120,1020108,مخزن المنوفية,90100003,172.08,176.1666666664,1.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+121,1020108,مخزن المنوفية,90100025,47.71,24.0,2.0,Cocoa,Cocoa,Cocoa Large 48DB
+122,1020108,مخزن المنوفية,90200054,22.58,241.1736111083,0.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+123,1020108,مخزن المنوفية,90200056,22.75,285.8263888861,0.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+124,1020108,مخزن المنوفية,90200058,26.42,13.27083333,2.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+125,1020108,مخزن المنوفية,90200059,23.5,222.7013888875,0.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+126,1020108,مخزن المنوفية,90200061,23.0,26.5833333306,1.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+127,1020108,مخزن المنوفية,90200062,18.58,343.7361111084,0.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+128,1020108,مخزن المنوفية,90200063,20.17,201.3333333302,0.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+129,1020108,مخزن المنوفية,90200064,22.0,164.7222222187,0.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+130,1020108,مخزن المنوفية,90200065,22.5,19.1111111088,1.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+131,1020108,مخزن المنوفية,90200135,18.0,14.5972222202,1.0,Chocolate,Chocolate,choco dark large stevia 55%
+132,1020108,مخزن المنوفية,90200136,18.42,313.5277777741,0.0,Chocolate,Chocolate,choco dark large hazelnut
+133,1020108,مخزن المنوفية,90200137,34.83,22.3611111085,2.0,Chocolate,Chocolate,choco dark large Almond
+134,1020108,مخزن المنوفية,90200138,39.5,217.9166666664,0.0,Chocolate,Chocolate,new dark couverture150 g
+135,1020108,مخزن المنوفية,90200139,36.5,72.2499999999,1.0,Chocolate,Chocolate,new Wight couverture150 g
+136,1020108,مخزن المنوفية,90300022,210.47,382.4166666623,1.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+137,1020108,مخزن المنوفية,90300023,22.83,228.9236111108,0.0,Bimbo,Biscuit,Bimbo XL 49g (12*12)
+138,1020108,مخزن المنوفية,90300033,118.31,492.3680555511,0.0,Bimbo,Biscuit,Bimbo L Choco Max
+139,1020108,مخزن المنوفية,90300034,94.63,326.3680555522,0.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+140,1020108,مخزن المنوفية,90500032,78.75,78.2604166656,1.0,Wafer,Biscuit,Wafer Munchi Strawbe32 gm
+141,1020108,مخزن المنوفية,90500033,27.13,144.1666666659,0.0,Wafer,Biscuit,Wafer Munchi Caramel32 gm
+142,1020108,مخزن المنوفية,90500034,9.0,3.4166666662,3.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+143,1020108,مخزن المنوفية,90500035,51.38,270.0833333328,0.0,Wafer,Biscuit,Wafer Munchi Hazelnut32gm
+144,1020108,مخزن المنوفية,90500036,91.75,724.0833333328,0.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+145,1020108,مخزن المنوفية,90500037,49.0,40.7499999995,1.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+146,1020108,مخزن المنوفية,FGBSBOT01,106.75,164.2847222199,1.0,Bimbo,Biscuit,Bimbo Oat Classic
+147,1020108,مخزن المنوفية,FGBSBOT02,82.17,19.2847222199,4.0,Bimbo,Biscuit,Bimbo Oat Raisins
+148,1020108,مخزن المنوفية,FGBSMBCM6,92.0,7.0,13.0,Bimbo,Biscuit,Mini Bimbo Choco Max 4.5 KG New
+149,1020108,مخزن المنوفية,FGBSMBO03,31.58,3000.4583333333,0.0,Bimbo,Biscuit,Mini Bimbo Original 24*12
+150,1020108,مخزن المنوفية,FGCHDK014,24.92,119.4999999972,0.0,Chocolate,Chocolate,Chocolate Dark 72%
+151,1020108,مخزن المنوفية,FGCHMK008,26.08,171.0972222191,0.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+152,1020108,مخزن المنوفية,FGCHMK009,26.0,79.2638888866,0.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+153,1020108,مخزن المنوفية,FGCOME003,1285.35,9647.4374999995,0.0,Cocoa,Cocoa,Cocoa Mix Med - Extra 10%
+154,1020108,مخزن المنوفية,FGJLP0001,9.98,189.4999999998,0.0,Valda,Valda,Jelly Strawberry - Funfruit
+155,1020108,مخزن المنوفية,FGJLP0005,29.72,129.4999999999,0.0,Valda,Valda,Jelly Mango - Funfruit
+156,1020108,مخزن المنوفية,FGJLP0006,21.05,112.1666666666,0.0,Valda,Valda,Jelly Pineapple - Funfruit
+157,1020108,مخزن المنوفية,FGWMST009,70.67,1677.3472222216,0.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+158,1020108,مخزن المنوفية,FGWMVG008,228.75,73.4166666664,3.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+159,1020108,مخزن المنوفية,FGWMVN007,79.25,834.5833333328,0.0,Wafer,Biscuit,Wafer Mini Munchi Vanilla
+160,1020108,مخزن المنوفية,FGWTRHZ04,5.42,13.4097222203,0.0,Wafer,Biscuit,Wafer Trix Hazelnut
+161,1020108,مخزن المنوفية,FGWTRVG01,16.67,12.1111111095,1.0,Wafer,Biscuit,Wafer Trix Vegan
+162,1020203,مخزن البحيرة,90100001,341.79,1073.312499999,0.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+163,1020203,مخزن البحيرة,90100003,30.0,241.6666666661,0.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+164,1020203,مخزن البحيرة,90100025,9.0,186.0208333333,0.0,Cocoa,Cocoa,Cocoa Large 48DB
+165,1020203,مخزن البحيرة,90200054,24.08,19.7430555493,1.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+166,1020203,مخزن البحيرة,90200056,30.58,16.3055555504,2.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+167,1020203,مخزن البحيرة,90200058,23.08,16.0624999946,1.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+168,1020203,مخزن البحيرة,90200059,19.5,10.7986111071,2.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+169,1020203,مخزن البحيرة,90200061,29.42,44.9722222136,1.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+170,1020203,مخزن البحيرة,90200062,23.58,48.9166666602,0.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+171,1020203,مخزن البحيرة,90200063,24.0,28.9444444375,1.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+172,1020203,مخزن البحيرة,90200064,13.0,103.6944444376,0.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+173,1020203,مخزن البحيرة,90200065,17.67,91.1805555509,0.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+174,1020203,مخزن البحيرة,90200135,22.0,72.958333329,0.0,Chocolate,Chocolate,choco dark large stevia 55%
+175,1020203,مخزن البحيرة,90200136,23.33,92.4166666605,0.0,Chocolate,Chocolate,choco dark large hazelnut
+176,1020203,مخزن البحيرة,90200137,18.83,91.5138888841,0.0,Chocolate,Chocolate,choco dark large Almond
+177,1020203,مخزن البحيرة,90200138,61.0,476.9166666653,0.0,Chocolate,Chocolate,new dark couverture150 g
+178,1020203,مخزن البحيرة,90300022,96.0,71.3124999868,1.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+179,1020203,مخزن البحيرة,90300023,23.17,7.3680555546,3.0,Bimbo,Biscuit,Bimbo XL 49g (12*12)
+180,1020203,مخزن البحيرة,90300033,104.17,65.5486110969,2.0,Bimbo,Biscuit,Bimbo L Choco Max
+181,1020203,مخزن البحيرة,90300034,119.0,61.2708333213,2.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+182,1020203,مخزن البحيرة,90300046,18.33,8.4027777768,2.0,Bimbo,Biscuit,Bimbo XL Choco Max
+183,1020203,مخزن البحيرة,90500033,27.0,8.6249999982,3.0,Wafer,Biscuit,Wafer Munchi Caramel32 gm
+184,1020203,مخزن البحيرة,90500034,0.75,30.4270833281,0.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+185,1020203,مخزن البحيرة,90500037,37.0,36.2604166607,1.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+186,1020203,مخزن البحيرة,FGBSBOT01,80.25,178.5347222148,0.0,Bimbo,Biscuit,Bimbo Oat Classic
+187,1020203,مخزن البحيرة,FGBSBOT02,44.0,174.9166666593,0.0,Bimbo,Biscuit,Bimbo Oat Raisins
+188,1020203,مخزن البحيرة,FGBSMBCM4,17.0,4.9687499965,3.0,Bimbo,Biscuit,Mini Bimbo Choco Max 24*12
+189,1020203,مخزن البحيرة,FGBSMBO03,25.0,3.6111111083,7.0,Bimbo,Biscuit,Mini Bimbo Original 24*12
+190,1020203,مخزن البحيرة,FGCHDK014,9.92,86.8194444384,0.0,Chocolate,Chocolate,Chocolate Dark 72%
+191,1020203,مخزن البحيرة,FGCHMK008,18.5,62.9444444389,0.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+192,1020203,مخزن البحيرة,FGCHMK009,16.58,93.1527777725,0.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+193,1020203,مخزن البحيرة,FGCOME003,2.0,10.0,0.0,Cocoa,Cocoa,Cocoa Mix Med - Extra 10%
+194,1020203,مخزن البحيرة,FGJLP0001,15.25,18.4027777734,1.0,Valda,Valda,Jelly Strawberry - Funfruit
+195,1020203,مخزن البحيرة,FGJLP0005,5.5,3.1736111101,2.0,Valda,Valda,Jelly Mango - Funfruit
+196,1020203,مخزن البحيرة,FGJLP0006,26.5,18.3333333318,1.0,Valda,Valda,Jelly Pineapple - Funfruit
+197,1020203,مخزن البحيرة,FGWMST009,13.08,2.1458333325,6.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+198,1020203,مخزن البحيرة,FGWMVG008,0.92,3.3819444437,0.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+199,1020203,مخزن البحيرة,FGWMVN007,2.5,3.7152777768,1.0,Wafer,Biscuit,Wafer Mini Munchi Vanilla
+200,1020203,مخزن البحيرة,FGWTRHZ04,4.0,7.1736111098,1.0,Wafer,Biscuit,Wafer Trix Hazelnut
+201,1020203,مخزن البحيرة,FGWTRVG01,10.0,5.5902777767,2.0,Wafer,Biscuit,Wafer Trix Vegan
+202,10301,مخزن الاسكندرية,90100001,146.85,2538.0833333317,0.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+203,10301,مخزن الاسكندرية,90100003,118.17,1043.4999999983,0.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+204,10301,مخزن الاسكندرية,90100025,17.0,0.1249999998,136.0,Cocoa,Cocoa,Cocoa Large 48DB
+205,10301,مخزن الاسكندرية,90200054,48.25,181.4236110841,0.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+206,10301,مخزن الاسكندرية,90200056,62.83,139.2291666485,0.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+207,10301,مخزن الاسكندرية,90200058,45.0,121.4097221973,0.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+208,10301,مخزن الاسكندرية,90200059,50.58,199.680555543,0.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+209,10301,مخزن الاسكندرية,90200061,101.92,245.6111110842,0.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+210,10301,مخزن الاسكندرية,90200062,40.0,237.7638888686,0.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+211,10301,مخزن الاسكندرية,90200063,5.67,184.0416666504,0.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+212,10301,مخزن الاسكندرية,90200064,11.67,539.7083333126,0.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+213,10301,مخزن الاسكندرية,90200065,33.0,159.8888888749,0.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+214,10301,مخزن الاسكندرية,90200066,9.75,1.7499999995,6.0,Chocolate,Chocolate,Fun Fruit strawberry
+215,10301,مخزن الاسكندرية,90200130,0.42,19.0,0.0,Chocolate,Chocolate,Couverture 2.5kg – Dark
+216,10301,مخزن الاسكندرية,90200135,39.92,266.4027777574,0.0,Chocolate,Chocolate,choco dark large stevia 55%
+217,10301,مخزن الاسكندرية,90200136,73.0,132.7222222049,1.0,Chocolate,Chocolate,choco dark large hazelnut
+218,10301,مخزن الاسكندرية,90200137,38.83,107.7361110986,0.0,Chocolate,Chocolate,choco dark large Almond
+219,10301,مخزن الاسكندرية,90200138,75.58,1210.4166666653,0.0,Chocolate,Chocolate,new dark couverture150 g
+220,10301,مخزن الاسكندرية,90300022,4.58,437.3472221846,0.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+221,10301,مخزن الاسكندرية,90300033,230.33,462.0486110826,0.0,Bimbo,Biscuit,Bimbo L Choco Max
+222,10301,مخزن الاسكندرية,90300034,279.0,179.8749999872,2.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+223,10301,مخزن الاسكندرية,90300046,13.58,3.840277777,4.0,Bimbo,Biscuit,Bimbo XL Choco Max
+224,10301,مخزن الاسكندرية,90500033,9.13,4.8333333331,2.0,Wafer,Biscuit,Wafer Munchi Caramel32 gm
+225,10301,مخزن الاسكندرية,90500034,27.0,52.218749995,1.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+226,10301,مخزن الاسكندرية,90500035,0.63,101.9479166575,0.0,Wafer,Biscuit,Wafer Munchi Hazelnut32gm
+227,10301,مخزن الاسكندرية,90500036,9.38,50.6562499954,0.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+228,10301,مخزن الاسكندرية,90500037,44.13,110.7916666591,0.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+229,10301,مخزن الاسكندرية,FGBSBOT01,107.33,299.1388888596,0.0,Bimbo,Biscuit,Bimbo Oat Classic
+230,10301,مخزن الاسكندرية,FGBSBOT02,52.75,367.9513888649,0.0,Bimbo,Biscuit,Bimbo Oat Raisins
+231,10301,مخزن الاسكندرية,FGBSMBCM4,15.0,10.2222222188,1.0,Bimbo,Biscuit,Mini Bimbo Choco Max 24*12
+232,10301,مخزن الاسكندرية,FGBSMBCM6,1.0,13.0,0.0,Bimbo,Biscuit,Mini Bimbo Choco Max 4.5 KG New
+233,10301,مخزن الاسكندرية,FGBSMBO03,42.0,5.9548611091,7.0,Bimbo,Biscuit,Mini Bimbo Original 24*12
+234,10301,مخزن الاسكندرية,FGBSMBO06,2.0,62.0,0.0,Bimbo,Biscuit,Mini Bimbo Original 4.5 KG New
+235,10301,مخزن الاسكندرية,FGCHDK014,0.67,102.1805555422,0.0,Chocolate,Chocolate,Chocolate Dark 72%
+236,10301,مخزن الاسكندرية,FGCHMK008,36.17,258.1805555358,0.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+237,10301,مخزن الاسكندرية,FGCHMK009,52.25,166.3611110986,0.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+238,10301,مخزن الاسكندرية,FGJLP0001,19.08,9.3333333314,2.0,Valda,Valda,Jelly Strawberry - Funfruit
+239,10301,مخزن الاسكندرية,FGJLP0005,16.08,2.0833333327,8.0,Valda,Valda,Jelly Mango - Funfruit
+240,10301,مخزن الاسكندرية,FGJLP0006,73.09,14.388888888,5.0,Valda,Valda,Jelly Pineapple - Funfruit
+241,10301,مخزن الاسكندرية,FGWMST009,107.0,3.9236111105,27.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+242,10301,مخزن الاسكندرية,FGWMVG008,27.92,7.9166666662,4.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+243,10301,مخزن الاسكندرية,FGWMVN007,68.92,9.6805555548,7.0,Wafer,Biscuit,Wafer Mini Munchi Vanilla
+244,10301,مخزن الاسكندرية,FGWTRHZ04,17.75,30.4374999963,1.0,Wafer,Biscuit,Wafer Trix Hazelnut
+245,1050101,مخزن القنال,90100001,150.0,1021.3333333328,0.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+246,1050101,مخزن القنال,90100003,92.0,249.4166666659,0.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+247,1050101,مخزن القنال,90100025,27.54,199.0416666666,0.0,Cocoa,Cocoa,Cocoa Large 48DB
+248,1050101,مخزن القنال,90200054,54.0,32.8194444385,2.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+249,1050101,مخزن القنال,90200056,28.92,24.6180555502,1.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+250,1050101,مخزن القنال,90200058,44.0,28.3819444391,2.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+251,1050101,مخزن القنال,90200059,47.0,22.8055555523,2.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+252,1050101,مخزن القنال,90200061,38.0,77.1249999917,0.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+253,1050101,مخزن القنال,90200062,20.0,116.1111111055,0.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+254,1050101,مخزن القنال,90200063,43.06,127.3055555496,0.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+255,1050101,مخزن القنال,90200064,16.0,44.8194444386,0.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+256,1050101,مخزن القنال,90200065,18.0,47.569444439,0.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+257,1050101,مخزن القنال,90200066,0.17,2.7499999995,0.0,Chocolate,Chocolate,Fun Fruit strawberry
+258,1050101,مخزن القنال,90200071,0.58,0.3333333333,2.0,Chocolate,Chocolate,Fun Fruit Coconut
+259,1050101,مخزن القنال,90200135,31.83,44.8888888843,1.0,Chocolate,Chocolate,choco dark large stevia 55%
+260,1050101,مخزن القنال,90200136,83.83,42.0833333291,2.0,Chocolate,Chocolate,choco dark large hazelnut
+261,1050101,مخزن القنال,90200137,51.0,30.5277777746,2.0,Chocolate,Chocolate,choco dark large Almond
+262,1050101,مخزن القنال,90200138,110.0,340.9999999991,0.0,Chocolate,Chocolate,new dark couverture150 g
+263,1050101,مخزن القنال,90300022,238.08,81.5277777688,3.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+264,1050101,مخزن القنال,90300023,2.0,2.5138888884,1.0,Bimbo,Biscuit,Bimbo XL 49g (12*12)
+265,1050101,مخزن القنال,90300033,59.92,82.145833324,1.0,Bimbo,Biscuit,Bimbo L Choco Max
+266,1050101,مخزن القنال,90300034,207.33,43.7986111055,5.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+267,1050101,مخزن القنال,90300046,23.83,2.1805555551,11.0,Bimbo,Biscuit,Bimbo XL Choco Max
+268,1050101,مخزن القنال,90500032,57.75,20.9687499975,3.0,Wafer,Biscuit,Wafer Munchi Strawbe32 gm
+269,1050101,مخزن القنال,90500034,15.63,17.6354166642,1.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+270,1050101,مخزن القنال,90500035,18.25,14.1354166645,1.0,Wafer,Biscuit,Wafer Munchi Hazelnut32gm
+271,1050101,مخزن القنال,90500036,86.01,12.9999999979,7.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+272,1050101,مخزن القنال,90500037,22.0,10.479166665,2.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+273,1050101,مخزن القنال,FGBSBOT01,176.33,54.47916666,3.0,Bimbo,Biscuit,Bimbo Oat Classic
+274,1050101,مخزن القنال,FGBSBOT02,162.58,49.312499993,3.0,Bimbo,Biscuit,Bimbo Oat Raisins
+275,1050101,مخزن القنال,FGBSMBCM4,81.92,4.3888888869,19.0,Bimbo,Biscuit,Mini Bimbo Choco Max 24*12
+276,1050101,مخزن القنال,FGBSMBCM6,21.0,6.0,4.0,Bimbo,Biscuit,Mini Bimbo Choco Max 4.5 KG New
+277,1050101,مخزن القنال,FGBSMBO03,39.24,2.7569444432,14.0,Bimbo,Biscuit,Mini Bimbo Original 24*12
+278,1050101,مخزن القنال,FGBSMBO06,10.0,12.0,1.0,Bimbo,Biscuit,Mini Bimbo Original 4.5 KG New
+279,1050101,مخزن القنال,FGCHDK014,8.33,30.0138888848,0.0,Chocolate,Chocolate,Chocolate Dark 72%
+280,1050101,مخزن القنال,FGCHMK008,30.0,37.2083333296,1.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+281,1050101,مخزن القنال,FGCHMK009,26.0,29.9861111075,1.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+282,1050101,مخزن القنال,FGJLP0001,6.17,157.5555555538,0.0,Valda,Valda,Jelly Strawberry - Funfruit
+283,1050101,مخزن القنال,FGJLP0005,5.23,37.4513888884,0.0,Valda,Valda,Jelly Mango - Funfruit
+284,1050101,مخزن القنال,FGJLP0006,14.07,18.423611111,1.0,Valda,Valda,Jelly Pineapple - Funfruit
+285,1050101,مخزن القنال,FGRMDL005,31.88,15.0,2.0,Ramadan Lantern ,Promotions,Ramadan Lanterns TT 2024
+286,1050101,مخزن القنال,FGWMST009,116.92,10.7499999993,11.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+287,1050101,مخزن القنال,FGWMVG008,106.17,1.8333333329,58.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+288,1050101,مخزن القنال,FGWMVN007,46.85,4.3333333327,11.0,Wafer,Biscuit,Wafer Mini Munchi Vanilla
+289,1050101,مخزن القنال,FGWTRHZ04,42.0,52.7638888783,1.0,Wafer,Biscuit,Wafer Trix Hazelnut
+290,1050101,مخزن القنال,FGWTRVG01,12.17,8.9027777759,1.0,Wafer,Biscuit,Wafer Trix Vegan
+291,1050101,مخزن القنال,FGWTRVN02,12.0,1.6527777772,7.0,Wafer,Biscuit,Wafer Trix Vanilla
+292,1100101,مخزن بنى سويف ,90100001,278.83,86.0,3.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+293,1100101,مخزن بنى سويف ,90100003,137.0,110.6666666665,1.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+294,1100101,مخزن بنى سويف ,90100025,41.27,34.0208333333,1.0,Cocoa,Cocoa,Cocoa Large 48DB
+295,1100101,مخزن بنى سويف ,90200054,8.25,36.4861111087,0.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+296,1100101,مخزن بنى سويف ,90200056,11.25,9.3055555538,1.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+297,1100101,مخزن بنى سويف ,90200058,13.25,31.0277777761,0.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+298,1100101,مخزن بنى سويف ,90200059,20.0,6.4374999984,3.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+299,1100101,مخزن بنى سويف ,90200061,13.0,20.055555553,1.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+300,1100101,مخزن بنى سويف ,90200062,13.58,11.8194444426,1.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+301,1100101,مخزن بنى سويف ,90200063,20.17,10.1527777757,2.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+302,1100101,مخزن بنى سويف ,90200064,12.5,11.7499999983,1.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+303,1100101,مخزن بنى سويف ,90200065,15.08,20.124999998,1.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+304,1100101,مخزن بنى سويف ,90200130,10.0,3.1666666666,3.0,Chocolate,Chocolate,Couverture 2.5kg – Dark
+305,1100101,مخزن بنى سويف ,90200131,4.83,1.2499999999,4.0,Chocolate,Chocolate,Couverture 2.5kg – White
+306,1100101,مخزن بنى سويف ,90200135,15.17,11.4999999983,1.0,Chocolate,Chocolate,choco dark large stevia 55%
+307,1100101,مخزن بنى سويف ,90200136,20.0,8.166666665,2.0,Chocolate,Chocolate,choco dark large hazelnut
+308,1100101,مخزن بنى سويف ,90200137,13.0,21.1527777761,1.0,Chocolate,Chocolate,choco dark large Almond
+309,1100101,مخزن بنى سويف ,90200138,63.0,179.4166666665,0.0,Chocolate,Chocolate,new dark couverture150 g
+310,1100101,مخزن بنى سويف ,90300022,97.0,14.0416666641,7.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+311,1100101,مخزن بنى سويف ,90300023,1.0,2.0972222218,0.0,Bimbo,Biscuit,Bimbo XL 49g (12*12)
+312,1100101,مخزن بنى سويف ,90300033,64.0,23.4166666636,3.0,Bimbo,Biscuit,Bimbo L Choco Max
+313,1100101,مخزن بنى سويف ,90300034,36.17,18.9861111085,2.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+314,1100101,مخزن بنى سويف ,90300046,11.83,3.8541666663,3.0,Bimbo,Biscuit,Bimbo XL Choco Max
+315,1100101,مخزن بنى سويف ,90500032,0.5,7.7291666658,0.0,Wafer,Biscuit,Wafer Munchi Strawbe32 gm
+316,1100101,مخزن بنى سويف ,90500033,0.75,2.3854166664,0.0,Wafer,Biscuit,Wafer Munchi Caramel32 gm
+317,1100101,مخزن بنى سويف ,90500034,5.75,6.6249999992,1.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+318,1100101,مخزن بنى سويف ,90500035,0.25,11.3645833318,0.0,Wafer,Biscuit,Wafer Munchi Hazelnut32gm
+319,1100101,مخزن بنى سويف ,90500036,6.38,14.6874999986,0.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+320,1100101,مخزن بنى سويف ,90500037,24.63,259.0520833319,0.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+321,1100101,مخزن بنى سويف ,FGBSBOT01,84.75,7.8402777764,11.0,Bimbo,Biscuit,Bimbo Oat Classic
+322,1100101,مخزن بنى سويف ,FGBSBOT02,69.25,9.2777777762,7.0,Bimbo,Biscuit,Bimbo Oat Raisins
+323,1100101,مخزن بنى سويف ,FGCHMK008,17.0,5.999999999,3.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+324,1100101,مخزن بنى سويف ,FGCHMK009,21.0,3.8333333325,5.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+325,1100101,مخزن بنى سويف ,FGCOME003,354.0,313.0833333332,1.0,Cocoa,Cocoa,Cocoa Mix Med - Extra 10%
+326,1100101,مخزن بنى سويف ,FGJLP0001,12.33,59.9097222223,0.0,Valda,Valda,Jelly Strawberry - Funfruit
+327,1100101,مخزن بنى سويف ,FGJLP0005,10.25,35.5,0.0,Valda,Valda,Jelly Mango - Funfruit
+328,1100101,مخزن بنى سويف ,FGJLP0006,10.07,46.0,0.0,Valda,Valda,Jelly Pineapple - Funfruit
+329,1100102,مخزن المنيا ,90100001,6.0,406.0416666666,0.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+330,1100102,مخزن المنيا ,90100003,69.0,51.4999999999,1.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+331,1100102,مخزن المنيا ,90200054,10.0,3.6874999989,3.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+332,1100102,مخزن المنيا ,90200056,17.0,6.2638888874,3.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+333,1100102,مخزن المنيا ,90200058,17.0,4.2638888876,4.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+334,1100102,مخزن المنيا ,90200059,19.0,3.2569444437,6.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+335,1100102,مخزن المنيا ,90200061,15.0,11.9305555542,1.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+336,1100102,مخزن المنيا ,90200062,18.0,11.7638888882,2.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+337,1100102,مخزن المنيا ,90200063,21.0,8.8333333325,2.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+338,1100102,مخزن المنيا ,90200064,13.0,14.097222221,1.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+339,1100102,مخزن المنيا ,90200065,16.0,5.9999999993,3.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+340,1100102,مخزن المنيا ,90200130,2.25,5.0,0.0,Chocolate,Chocolate,Couverture 2.5kg – Dark
+341,1100102,مخزن المنيا ,90200135,16.0,8.8333333331,2.0,Chocolate,Chocolate,choco dark large stevia 55%
+342,1100102,مخزن المنيا ,90200136,16.0,5.8333333326,3.0,Chocolate,Chocolate,choco dark large hazelnut
+343,1100102,مخزن المنيا ,90200137,15.0,5.7638888883,3.0,Chocolate,Chocolate,choco dark large Almond
+344,1100102,مخزن المنيا ,90200138,55.0,121.2499999996,0.0,Chocolate,Chocolate,new dark couverture150 g
+345,1100102,مخزن المنيا ,90300022,52.0,17.7013888843,3.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+346,1100102,مخزن المنيا ,90300033,60.0,18.430555551,3.0,Bimbo,Biscuit,Bimbo L Choco Max
+347,1100102,مخزن المنيا ,90300034,1.0,24.6805555505,0.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+348,1100102,مخزن المنيا ,90500036,0.38,13.1145833311,0.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+349,1100102,مخزن المنيا ,90500037,7.5,12.3229166643,1.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+350,1100102,مخزن المنيا ,FGBSBOT01,154.0,6.9722222203,22.0,Bimbo,Biscuit,Bimbo Oat Classic
+351,1100102,مخزن المنيا ,FGBSBOT02,127.0,11.0555555538,11.0,Bimbo,Biscuit,Bimbo Oat Raisins
+352,1100102,مخزن المنيا ,FGBSMBO03,76.0,0.1284722221,592.0,Bimbo,Biscuit,Mini Bimbo Original 24*12
+353,1100102,مخزن المنيا ,FGCHMK008,13.0,6.4999999993,2.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+354,1100102,مخزن المنيا ,FGCHMK009,15.0,6.0972222215,2.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+355,1100102,مخزن المنيا ,FGCOME003,291.0,18.3958333329,16.0,Cocoa,Cocoa,Cocoa Mix Med - Extra 10%
+356,1100102,مخزن المنيا ,FGJLP0001,27.99,0.6666666664,42.0,Valda,Valda,Jelly Strawberry - Funfruit
+357,1100102,مخزن المنيا ,FGJLP0005,8.5,0.0833333333,102.0,Valda,Valda,Jelly Mango - Funfruit
+358,1100102,مخزن المنيا ,FGWMST009,50.0,1.1666666666,43.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+359,1100102,مخزن المنيا ,FGWMVG008,47.0,1.3333333331,35.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+360,1100102,مخزن المنيا ,FGWMVN007,62.0,0.1666666666,372.0,Wafer,Biscuit,Wafer Mini Munchi Vanilla
+361,1100201,مخزن اسيوط,90100003,69.75,27.4166666665,3.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+362,1100201,مخزن اسيوط,90200054,29.08,2.4999999994,12.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+363,1100201,مخزن اسيوط,90200056,2.67,1.8333333327,1.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+364,1100201,مخزن اسيوط,90200058,42.1,2.9236111105,14.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+365,1100201,مخزن اسيوط,90200064,0.83,0.1666666666,5.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+366,1100201,مخزن اسيوط,90200066,2.29,1.6666666662,1.0,Chocolate,Chocolate,Fun Fruit strawberry
+367,1100201,مخزن اسيوط,90200136,4.92,3.9305555549,1.0,Chocolate,Chocolate,choco dark large hazelnut
+368,1100201,مخزن اسيوط,90200137,0.33,4.6666666659,0.0,Chocolate,Chocolate,choco dark large Almond
+369,1100201,مخزن اسيوط,90200138,28.58,42.0833333333,1.0,Chocolate,Chocolate,new dark couverture150 g
+370,1100201,مخزن اسيوط,90300033,10.92,13.7847222207,1.0,Bimbo,Biscuit,Bimbo L Choco Max
+371,1100201,مخزن اسيوط,90300034,15.67,12.4861111097,1.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+372,1100201,مخزن اسيوط,90500037,22.0,6.1874999994,4.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+373,1100201,مخزن اسيوط,FGBSMBO03,13.25,11.3611111093,1.0,Bimbo,Biscuit,Mini Bimbo Original 24*12
+374,1100201,مخزن اسيوط,FGCHDK014,4.17,3.263888888,1.0,Chocolate,Chocolate,Chocolate Dark 72%
+375,1100201,مخزن اسيوط,FGCHMK009,2.83,3.9999999994,1.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+376,1100201,مخزن اسيوط,FGCOME003,310.5,93.7916666665,3.0,Cocoa,Cocoa,Cocoa Mix Med - Extra 10%
+377,1100202,مخزن سوهاج,90100001,258.38,78.2916666664,3.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+378,1100202,مخزن سوهاج,90100003,24.08,61.1666666664,0.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+379,1100202,مخزن سوهاج,90100025,36.46,84.1041666665,0.0,Cocoa,Cocoa,Cocoa Large 48DB
+380,1100202,مخزن سوهاج,90200054,25.5,4.6805555544,5.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+381,1100202,مخزن سوهاج,90200056,15.42,3.5972222212,4.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+382,1100202,مخزن سوهاج,90200058,25.92,3.7569444432,7.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+383,1100202,مخزن سوهاج,90200059,13.0,2.5972222217,5.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+384,1100202,مخزن سوهاج,90200061,19.0,17.9583333318,1.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+385,1100202,مخزن سوهاج,90200062,17.08,10.8611111101,2.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+386,1100202,مخزن سوهاج,90200063,13.08,8.597222221,2.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+387,1100202,مخزن سوهاج,90200064,18.25,5.7638888879,3.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+388,1100202,مخزن سوهاج,90200065,11.0,8.2638888878,1.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+389,1100202,مخزن سوهاج,90200077,6.96,0.1666666666,42.0,Chocolate,Chocolate,Rocket 30 gm (6*24)
+390,1100202,مخزن سوهاج,90200130,1.5,1.0,2.0,Chocolate,Chocolate,Couverture 2.5kg – Dark
+391,1100202,مخزن سوهاج,90200135,15.0,5.4999999991,3.0,Chocolate,Chocolate,choco dark large stevia 55%
+392,1100202,مخزن سوهاج,90200136,15.0,3.6666666661,4.0,Chocolate,Chocolate,choco dark large hazelnut
+393,1100202,مخزن سوهاج,90200137,17.08,3.3333333326,5.0,Chocolate,Chocolate,choco dark large Almond
+394,1100202,مخزن سوهاج,90200138,43.75,83.2499999999,1.0,Chocolate,Chocolate,new dark couverture150 g
+395,1100202,مخزن سوهاج,90200139,1.25,58.1666666666,0.0,Chocolate,Chocolate,new Wight couverture150 g
+396,1100202,مخزن سوهاج,90300022,96.33,40.3958333298,2.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+397,1100202,مخزن سوهاج,90300023,7.0,4.7569444434,1.0,Bimbo,Biscuit,Bimbo XL 49g (12*12)
+398,1100202,مخزن سوهاج,90300033,81.0,18.9652777738,4.0,Bimbo,Biscuit,Bimbo L Choco Max
+399,1100202,مخزن سوهاج,90300034,73.0,8.4027777758,9.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+400,1100202,مخزن سوهاج,90300046,53.0,5.263888888,10.0,Bimbo,Biscuit,Bimbo XL Choco Max
+401,1100202,مخزن سوهاج,90500032,17.0,6.0729166653,3.0,Wafer,Biscuit,Wafer Munchi Strawbe32 gm
+402,1100202,مخزن سوهاج,90500034,24.0,3.4166666659,7.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+403,1100202,مخزن سوهاج,90500035,31.0,4.7916666658,6.0,Wafer,Biscuit,Wafer Munchi Hazelnut32gm
+404,1100202,مخزن سوهاج,90500036,29.0,3.5208333324,8.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+405,1100202,مخزن سوهاج,90500037,48.0,8.5416666654,6.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+406,1100202,مخزن سوهاج,FGBSBOT01,43.67,6.069444443,7.0,Bimbo,Biscuit,Bimbo Oat Classic
+407,1100202,مخزن سوهاج,FGBSBOT02,38.83,7.7430555541,5.0,Bimbo,Biscuit,Bimbo Oat Raisins
+408,1100202,مخزن سوهاج,FGCHDK014,14.0,5.6666666657,2.0,Chocolate,Chocolate,Chocolate Dark 72%
+409,1100202,مخزن سوهاج,FGCHMK008,15.0,4.4999999993,3.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+410,1100202,مخزن سوهاج,FGCHMK009,14.08,3.166666666,4.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+411,1100202,مخزن سوهاج,FGCOME003,27.0,374.5624999999,0.0,Cocoa,Cocoa,Cocoa Mix Med - Extra 10%
+412,1100202,مخزن سوهاج,FGJLP0001,5.83,23.8472222215,0.0,Valda,Valda,Jelly Strawberry - Funfruit
+413,1100202,مخزن سوهاج,FGJLP0006,4.92,25.9236111107,0.0,Valda,Valda,Jelly Pineapple - Funfruit
+414,1100202,مخزن سوهاج,FGWMST009,39.08,2.0833333327,19.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+415,1100202,مخزن سوهاج,FGWMVG008,41.25,1.7499999995,24.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+416,1100202,مخزن سوهاج,FGWMVN007,44.08,1.9166666661,23.0,Wafer,Biscuit,Wafer Mini Munchi Vanilla
+417,1100202,مخزن سوهاج,FGWTRVN02,16.0,1.5486111106,10.0,Wafer,Biscuit,Wafer Trix Vanilla
+418,1100203,مخزن الغردقة,90100001,54.0,256.1874999998,0.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+419,1100203,مخزن الغردقة,90100003,38.0,74.9166666661,1.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+420,1100203,مخزن الغردقة,90200054,14.0,4.7777777761,3.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+421,1100203,مخزن الغردقة,90200056,15.0,5.0972222206,3.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+422,1100203,مخزن الغردقة,90200058,21.0,5.6736111096,4.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+423,1100203,مخزن الغردقة,90200059,12.0,6.2777777765,2.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+424,1100203,مخزن الغردقة,90200061,8.0,10.555555554,1.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+425,1100203,مخزن الغردقة,90200062,10.0,7.5277777764,1.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+426,1100203,مخزن الغردقة,90200063,7.0,8.0555555538,1.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+427,1100203,مخزن الغردقة,90200064,11.0,11.5138888869,1.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+428,1100203,مخزن الغردقة,90200065,8.0,8.2222222211,1.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+429,1100203,مخزن الغردقة,90200130,1.0,2.0,1.0,Chocolate,Chocolate,Couverture 2.5kg – Dark
+430,1100203,مخزن الغردقة,90200135,11.0,22.0555555536,0.0,Chocolate,Chocolate,choco dark large stevia 55%
+431,1100203,مخزن الغردقة,90200136,16.0,10.8611111094,1.0,Chocolate,Chocolate,choco dark large hazelnut
+432,1100203,مخزن الغردقة,90200137,15.0,19.7638888874,1.0,Chocolate,Chocolate,choco dark large Almond
+433,1100203,مخزن الغردقة,90200138,20.0,141.4166666662,0.0,Chocolate,Chocolate,new dark couverture150 g
+434,1100203,مخزن الغردقة,90300022,39.33,27.916666664,1.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+435,1100203,مخزن الغردقة,90300023,12.0,0.0833333333,144.0,Bimbo,Biscuit,Bimbo XL 49g (12*12)
+436,1100203,مخزن الغردقة,90300033,91.0,10.3888888876,9.0,Bimbo,Biscuit,Bimbo L Choco Max
+437,1100203,مخزن الغردقة,90300034,91.0,16.2986111091,6.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+438,1100203,مخزن الغردقة,90300046,12.0,0.0833333333,144.0,Bimbo,Biscuit,Bimbo XL Choco Max
+439,1100203,مخزن الغردقة,90500034,26.0,8.291666665,3.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+440,1100203,مخزن الغردقة,90500035,14.0,5.6354166659,2.0,Wafer,Biscuit,Wafer Munchi Hazelnut32gm
+441,1100203,مخزن الغردقة,90500036,21.0,8.2708333319,3.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+442,1100203,مخزن الغردقة,90500037,37.0,17.6562499983,2.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+443,1100203,مخزن الغردقة,FGBSBOT01,35.0,16.2986111092,2.0,Bimbo,Biscuit,Bimbo Oat Classic
+444,1100203,مخزن الغردقة,FGBSBOT02,28.0,16.1597222204,2.0,Bimbo,Biscuit,Bimbo Oat Raisins
+445,1100203,مخزن الغردقة,FGCHDK014,3.0,4.5277777774,1.0,Chocolate,Chocolate,Chocolate Dark 72%
+446,1100203,مخزن الغردقة,FGCHMK008,10.0,34.4583333316,0.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+447,1100203,مخزن الغردقة,FGCHMK009,20.0,26.0972222211,1.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+448,1100203,مخزن الغردقة,FGJLP0001,9.0,6.5069444442,1.0,Valda,Valda,Jelly Strawberry - Funfruit
+449,1100203,مخزن الغردقة,FGJLP0005,7.25,6.4166666665,1.0,Valda,Valda,Jelly Mango - Funfruit
+450,1100203,مخزن الغردقة,FGJLP0006,3.17,1.2499999999,3.0,Valda,Valda,Jelly Pineapple - Funfruit
+451,1100203,مخزن الغردقة,FGWMST009,62.33,2.1666666662,29.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+452,1100203,مخزن الغردقة,FGWMVG008,64.92,0.0833333333,779.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+453,1100203,مخزن الغردقة,FGWTRVN02,7.0,1.0347222217,7.0,Wafer,Biscuit,Wafer Trix Vanilla
+454,1100301,محزن الاقصر,90100001,316.0,343.7916666662,1.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+455,1100301,محزن الاقصر,90100003,35.0,17.7499999997,2.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+456,1100301,محزن الاقصر,90200054,18.75,1.0833333332,17.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+457,1100301,محزن الاقصر,90200056,13.0,1.1666666666,11.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+458,1100301,محزن الاقصر,90200058,16.17,1.6666666664,10.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+459,1100301,محزن الاقصر,90200061,13.75,0.8333333332,17.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+460,1100301,محزن الاقصر,90200062,14.0,0.9999999998,14.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+461,1100301,محزن الاقصر,90200063,10.25,3.333333333,3.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+462,1100301,محزن الاقصر,90200064,13.17,3.833333333,3.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+463,1100301,محزن الاقصر,90200065,9.0,1.6666666664,5.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+464,1100301,محزن الاقصر,90200135,13.85,4.3333333329,3.0,Chocolate,Chocolate,choco dark large stevia 55%
+465,1100301,محزن الاقصر,90200136,13.08,1.1666666664,11.0,Chocolate,Chocolate,choco dark large hazelnut
+466,1100301,محزن الاقصر,90200137,11.25,3.3333333329,3.0,Chocolate,Chocolate,choco dark large Almond
+467,1100301,محزن الاقصر,90200138,35.0,22.5833333331,2.0,Chocolate,Chocolate,new dark couverture150 g
+468,1100301,محزن الاقصر,90300022,36.42,5.993055554,6.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+469,1100301,محزن الاقصر,90300033,53.25,5.1388888869,10.0,Bimbo,Biscuit,Bimbo L Choco Max
+470,1100301,محزن الاقصر,90300034,24.83,3.6597222211,7.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+471,1100301,محزن الاقصر,90500032,0.13,5.7916666657,0.0,Wafer,Biscuit,Wafer Munchi Strawbe32 gm
+472,1100301,محزن الاقصر,90500034,6.0,7.666666666,1.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+473,1100301,محزن الاقصر,90500035,0.63,5.4270833323,0.0,Wafer,Biscuit,Wafer Munchi Hazelnut32gm
+474,1100301,محزن الاقصر,90500036,25.0,3.5520833326,7.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+475,1100301,محزن الاقصر,90500037,45.75,6.0937499989,8.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+476,1100301,محزن الاقصر,FGBSBOT01,38.08,3.506944443,11.0,Bimbo,Biscuit,Bimbo Oat Classic
+477,1100301,محزن الاقصر,FGBSBOT02,38.17,6.3402777764,6.0,Bimbo,Biscuit,Bimbo Oat Raisins
+478,1100301,محزن الاقصر,FGBSMBCM4,13.83,0.7499999998,18.0,Bimbo,Biscuit,Mini Bimbo Choco Max 24*12
+479,1100301,محزن الاقصر,FGBSMBO03,25.92,0.3749999999,69.0,Bimbo,Biscuit,Mini Bimbo Original 24*12
+480,1100301,محزن الاقصر,FGCHDK014,8.42,4.1666666662,2.0,Chocolate,Chocolate,Chocolate Dark 72%
+481,1100301,محزن الاقصر,FGCHMK008,12.92,1.1666666664,11.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+482,1100301,محزن الاقصر,FGCHMK009,9.5,3.1666666663,3.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+483,1100301,محزن الاقصر,FGJLP0001,1.0,0.2499999999,4.0,Valda,Valda,Jelly Strawberry - Funfruit
+484,1100301,محزن الاقصر,FGJLP0005,1.0,8.3333333332,0.0,Valda,Valda,Jelly Mango - Funfruit
+485,1100301,محزن الاقصر,FGJLP0006,1.0,0.2499999999,4.0,Valda,Valda,Jelly Pineapple - Funfruit
+486,1100301,محزن الاقصر,FGWMST009,61.67,0.6874999996,90.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+487,1100301,محزن الاقصر,FGWMVG008,41.08,0.9444444439,43.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+488,1100301,محزن الاقصر,FGWMVN007,57.83,0.8472222218,68.0,Wafer,Biscuit,Wafer Mini Munchi Vanilla
+489,1100301,محزن الاقصر,FGWTRHZ04,10.0,0.0833333333,120.0,Wafer,Biscuit,Wafer Trix Hazelnut
+490,1100302,مخزن اسوان,90100001,204.0,259.5416666661,1.0,Cocoa,Cocoa,Cocoa Mix 77 gm  (48 pack)
+491,1100302,مخزن اسوان,90100003,36.0,28.9166666663,1.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+492,1100302,مخزن اسوان,90100025,10.0,44.1249999999,0.0,Cocoa,Cocoa,Cocoa Large 48DB
+493,1100302,مخزن اسوان,90200054,18.0,40.249999999,0.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+494,1100302,مخزن اسوان,90200056,12.0,98.3333333328,0.0,Chocolate,Chocolate,Choc Corona Medium Crispy NEW
+495,1100302,مخزن اسوان,90200058,19.0,38.9999999992,0.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+496,1100302,مخزن اسوان,90200059,12.0,1.0833333331,11.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+497,1100302,مخزن اسوان,90200061,12.0,2.1666666662,6.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+498,1100302,مخزن اسوان,90200062,14.0,6.1666666659,2.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+499,1100302,مخزن اسوان,90200063,11.0,8.4999999989,1.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+500,1100302,مخزن اسوان,90200064,10.25,6.6666666657,2.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+501,1100302,مخزن اسوان,90200065,15.0,6.8333333326,2.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+502,1100302,مخزن اسوان,90200135,17.0,4.0972222212,4.0,Chocolate,Chocolate,choco dark large stevia 55%
+503,1100302,مخزن اسوان,90200136,14.5,3.3333333325,4.0,Chocolate,Chocolate,choco dark large hazelnut
+504,1100302,مخزن اسوان,90200137,15.58,3.3333333325,5.0,Chocolate,Chocolate,choco dark large Almond
+505,1100302,مخزن اسوان,90200138,43.0,76.7499999998,1.0,Chocolate,Chocolate,new dark couverture150 g
+506,1100302,مخزن اسوان,90200139,18.0,18.1666666666,1.0,Chocolate,Chocolate,new Wight couverture150 g
+507,1100302,مخزن اسوان,90300022,119.0,12.0138888866,10.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+508,1100302,مخزن اسوان,90300023,7.0,2.8472222218,2.0,Bimbo,Biscuit,Bimbo XL 49g (12*12)
+509,1100302,مخزن اسوان,90300033,78.0,33.6458333312,2.0,Bimbo,Biscuit,Bimbo L Choco Max
+510,1100302,مخزن اسوان,90300034,85.0,8.6180555535,10.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+511,1100302,مخزن اسوان,90300046,4.0,3.0972222219,1.0,Bimbo,Biscuit,Bimbo XL Choco Max
+512,1100302,مخزن اسوان,90500034,62.0,3.6145833326,17.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+513,1100302,مخزن اسوان,90500035,61.0,4.2187499992,14.0,Wafer,Biscuit,Wafer Munchi Hazelnut32gm
+514,1100302,مخزن اسوان,90500036,18.0,2.0624999996,9.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+515,1100302,مخزن اسوان,90500037,43.0,4.3749999992,10.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+516,1100302,مخزن اسوان,FGBSBOT01,48.0,3.4930555545,14.0,Bimbo,Biscuit,Bimbo Oat Classic
+517,1100302,مخزن اسوان,FGBSBOT02,50.0,6.1805555545,8.0,Bimbo,Biscuit,Bimbo Oat Raisins
+518,1100302,مخزن اسوان,FGCHDK014,11.0,14.9999999991,1.0,Chocolate,Chocolate,Chocolate Dark 72%
+519,1100302,مخزن اسوان,FGCHMK008,16.0,4.2638888879,4.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+520,1100302,مخزن اسوان,FGCHMK009,16.0,13.8333333325,1.0,Chocolate,Chocolate,Chocolate Milk Salted Almond Large
+521,1100302,مخزن اسوان,FGJLP0001,4.0,224.2499999998,0.0,Valda,Valda,Jelly Strawberry - Funfruit
+522,1100302,مخزن اسوان,FGJLP0005,17.0,151.7499999999,0.0,Valda,Valda,Jelly Mango - Funfruit
+523,1100302,مخزن اسوان,FGJLP0006,18.0,49.3333333332,0.0,Valda,Valda,Jelly Pineapple - Funfruit
+524,1100302,مخزن اسوان,FGWMST009,97.0,1.1111111109,87.0,Wafer,Biscuit,Wafer Mini Munchi Strawberry
+525,1100302,مخزن اسوان,FGWMVG008,151.0,0.1805555554,836.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+526,1100302,مخزن اسوان,FGWMVN007,102.0,0.9374999997,109.0,Wafer,Biscuit,Wafer Mini Munchi Vanilla
+527,1100302,مخزن اسوان,FGWTRVN02,8.0,0.1666666666,48.0,Wafer,Biscuit,Wafer Trix Vanilla
+528,1100303,مخزن قنا,90100003,193.5,64.4999999998,3.0,Raw cocoa,Cocoa,COCOA Pure 90 gm (12 Pack)
+529,1100303,مخزن قنا,90100025,47.0,24.1458333331,2.0,Cocoa,Cocoa,Cocoa Large 48DB
+530,1100303,مخزن قنا,90200054,18.17,4.5902777773,4.0,Chocolate,Chocolate,Choc Corona  Medium Milk NEW
+531,1100303,مخزن قنا,90200058,15.92,2.3472222217,7.0,Chocolate,Chocolate,Choc Corona Medium Dark NEW
+532,1100303,مخزن قنا,90200059,6.58,16.083333333,0.0,Chocolate,Chocolate,Choc Corona Medium Lite NEW
+533,1100303,مخزن قنا,90200061,11.67,6.3194444438,2.0,Chocolate,Chocolate,Choc Corona KING Size Hazelnut NEW
+534,1100303,مخزن قنا,90200062,6.67,3.9305555552,2.0,Chocolate,Chocolate,Choc Corona KING Size Crispy New
+535,1100303,مخزن قنا,90200063,11.67,6.4305555551,2.0,Chocolate,Chocolate,Choc Corona KING Size Extra Milk NEW
+536,1100303,مخزن قنا,90200064,6.17,4.4166666661,1.0,Chocolate,Chocolate,Choc Corona KING Size Dark NEW
+537,1100303,مخزن قنا,90200065,5.83,3.1527777773,2.0,Chocolate,Chocolate,Choc Corona KING Size Lite NEW
+538,1100303,مخزن قنا,90200135,8.0,4.194444444,2.0,Chocolate,Chocolate,choco dark large stevia 55%
+539,1100303,مخزن قنا,90200138,135.58,27.2499999996,5.0,Chocolate,Chocolate,new dark couverture150 g
+540,1100303,مخزن قنا,90300022,214.75,6.1874999982,35.0,Bimbo,Biscuit,Bimbo L 31g (12*12)
+541,1100303,مخزن قنا,90300033,201.42,5.3194444429,38.0,Bimbo,Biscuit,Bimbo L Choco Max
+542,1100303,مخزن قنا,90300034,177.0,8.0208333311,22.0,Bimbo,Biscuit,Bimbo L Hazelnut Coated
+543,1100303,مخزن قنا,90300046,22.0,2.006944444,11.0,Bimbo,Biscuit,Bimbo XL Choco Max
+544,1100303,مخزن قنا,90500032,48.63,53.614583332,1.0,Wafer,Biscuit,Wafer Munchi Strawbe32 gm
+545,1100303,مخزن قنا,90500034,44.0,30.7916666652,1.0,Wafer,Biscuit,Wafer Munchi Coconut 32gm
+546,1100303,مخزن قنا,90500035,96.48,33.3749999981,3.0,Wafer,Biscuit,Wafer Munchi Hazelnut32gm
+547,1100303,مخزن قنا,90500036,31.5,6.093749999,5.0,Wafer,Biscuit,Wafer Munchi Vanilla- 32g
+548,1100303,مخزن قنا,90500037,155.63,6.8854166653,23.0,Wafer,Biscuit,Wafer Munchi Vegan- 32gm
+549,1100303,مخزن قنا,FGBSBOT01,135.83,4.5624999987,30.0,Bimbo,Biscuit,Bimbo Oat Classic
+550,1100303,مخزن قنا,FGBSBOT02,137.42,3.8888888878,35.0,Bimbo,Biscuit,Bimbo Oat Raisins
+551,1100303,مخزن قنا,FGBSMBCM4,11.42,0.8541666661,13.0,Bimbo,Biscuit,Mini Bimbo Choco Max 24*12
+552,1100303,مخزن قنا,FGBSMBO03,13.58,0.5972222217,23.0,Bimbo,Biscuit,Mini Bimbo Original 24*12
+553,1100303,مخزن قنا,FGCHDK014,6.0,0.0972222221,62.0,Chocolate,Chocolate,Chocolate Dark 72%
+554,1100303,مخزن قنا,FGCHMK008,5.92,3.6666666665,2.0,Chocolate,Chocolate,Chocolate Milk Stevia Large
+555,1100303,مخزن قنا,FGCOME003,332.75,282.2499999995,1.0,Cocoa,Cocoa,Cocoa Mix Med - Extra 10%
+556,1100303,مخزن قنا,FGJLP0001,11.75,109.1666666666,0.0,Valda,Valda,Jelly Strawberry - Funfruit
+557,1100303,مخزن قنا,FGJLP0005,3.25,60.0,0.0,Valda,Valda,Jelly Mango - Funfruit
+558,1100303,مخزن قنا,FGJLP0006,0.83,108.0,0.0,Valda,Valda,Jelly Pineapple - Funfruit
+559,1100303,مخزن قنا,FGWMVG008,78.42,3.4583333325,23.0,Wafer,Biscuit,Wafer Mini Munchi Vegan
+560,1100303,مخزن قنا,FGWTRHZ04,74.0,2.3541666661,31.0,Wafer,Biscuit,Wafer Trix Hazelnut
+561,1100303,مخزن قنا,FGWTRVG01,68.0,2.1805555551,31.0,Wafer,Biscuit,Wafer Trix Vegan
+562,1100303,مخزن قنا,FGWTRVN02,18.0,145.194444444,0.0,Wafer,Biscuit,Wafer Trix Vanilla
+</div>
+    </body>
+</html>
